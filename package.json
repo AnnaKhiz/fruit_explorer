@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "pre-commit": "lint"
+  },
+  "dependencies": {
+    "@nuxt/http": "^0.6.4",
+    "@nuxtjs/proxy": "^2.1.0",
+    "@pinia/nuxt": "^0.10.1",
+    "eslint-define-config": "^2.1.0",
+    "http-proxy-middleware": "^3.0.3",
+    "nuxt": "^3.15.4",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^1.0.1",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/node": "^22.13.4",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "@typescript-eslint/utils": "^8.24.1",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "vite-svg-loader": "^5.1.0",
+    "vue-eslint-parser": "^9.4.3"
+  }
+}
