@@ -16,6 +16,12 @@ html, body {
 }
 
 .container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: auto;
+	grid-template-areas:
+		"header"
+		"main";
 	padding: 1.5rem 1.8rem;
 }
 
