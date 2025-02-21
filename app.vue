@@ -20,8 +20,8 @@ html, body {
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: auto;
 	grid-template-areas:
-		"header"
-		"main";
+		"header header header header header header header header header header header header"
+		"main main main main main main main main main main main main";
 	padding: 1.5rem 1.8rem;
 }
 

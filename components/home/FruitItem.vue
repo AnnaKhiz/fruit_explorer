@@ -5,26 +5,58 @@ import FavoritesIcon from '~/assets/icons/favorite.svg';
 import OpenIcon from '~/assets/icons/show.svg';
 import { useFruitsStore } from "~/store/useFruitsStore";
 
+const router = useRouter()
+
 const props = defineProps<{
 	fruit: Fruits;
 }>();
 
-const isFavorite = ref<boolean>(false);
-const { removeFruitItem } = useFruitsStore();
-const handleFavorite = () => {
-	isFavorite.value = !isFavorite.value;
+type FruitsFavorite = (Fruits & { favorite: boolean });
+
+const { removeFruitItem, toggleFavoriteState } = useFruitsStore();
+const handleFavorite = (value: Fruits) => {
+
+	const storageFav = JSON.parse(localStorage.getItem('fruits_fav') || 'null');
+	let updatedValue: FruitsFavorite[] | FruitsFavorite = [];
+
+	if (!storageFav) {
+		updatedValue = [{ ...value, favorite: true}];
+
+		localStorage.setItem('fruits_fav', JSON.stringify(updatedValue))
+
+	} else if (storageFav && !value.favorite) {
+		updatedValue = { ...value, favorite: true};
+		storageFav.push(updatedValue);
+
+		localStorage.setItem('fruits_fav', JSON.stringify(storageFav))
+	} else {
+		const index = storageFav.findIndex((el: Fruits) => el.id === value.id);
+		if (index === -1) return;
+		storageFav.splice(index, 1);
+
+		localStorage.setItem('fruits_fav', JSON.stringify(storageFav))
+	}
+
+	toggleFavoriteState(value.id)
 }
 const handleDelete = (id: number) => {
-	console.log('deleted', id)
+
+
+	console.log('deleted', router.currentRoute.value.path !== '/')
 	removeFruitItem(id)
 }
+
+onMounted(() => {
+	console.log('FRUIT - ', props.fruit)
+})
+
 </script>
 
 <template>
 	<div >
 		<div class="fruit">
 			<h3>{{ props.fruit.name }}</h3>
-			<p>Family: {{ props.fruit.family }}</p>
+			<NuxtLink :to="`/group/${fruit.family}`">Family: {{ props.fruit.family }}</NuxtLink>
 			<p>Order: {{ props.fruit.order }}</p>
 			<p>Genus: {{ props.fruit.genus }}</p>
 		</div>
@@ -39,8 +71,8 @@ const handleDelete = (id: number) => {
 		</div>
 
 		<div class="fruit">
-			<DeleteIcon class="action-icon" @click="handleDelete(props.fruit.id)"/>
-			<FavoritesIcon class="action-icon fav" @click="handleFavorite" :class="isFavorite ? 'active' : ''" />
+			<DeleteIcon class="action-icon" @click="handleDelete(props.fruit.id)" />
+			<FavoritesIcon class="action-icon fav" @click="handleFavorite(fruit)" :class="props.fruit.favorite ? 'active' : ''" />
 			<OpenIcon class="action-icon" />
 		</div>
 	</div>

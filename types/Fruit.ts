@@ -12,5 +12,6 @@ export type Fruits = {
 	family: string;
 	order: string;
 	genus: string;
+	favorite: boolean;
 	nutritions: Nutritions
 }

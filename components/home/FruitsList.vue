@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import FruitItem from "~/components/home/FruitItem.vue";
-import { useFruitsStore } from "~/store/useFruitsStore";
-const { fruitsList } = storeToRefs(useFruitsStore())
+import type { Fruits } from "~/types/Fruit";
 
-
+const props = defineProps<{
+	fruitsList: Fruits[]
+}>()
 
 </script>
 
 <template>
-	<div v-if="fruitsList?.length"  class="grid-container" >
-		<FruitItem v-for="fruit in fruitsList" :key="fruit.id" :fruit="fruit" class="grid-item" />
+	<div v-if="props.fruitsList?.length"  class="grid-container" >
+		<FruitItem v-for="fruit in props.fruitsList" :key="fruit.id" :fruit="fruit" class="grid-item" />
 	</div>
+	<div v-else>No favorite yet</div>
 </template>
 
 <style scoped>
