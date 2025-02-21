@@ -27,14 +27,5 @@ const props = defineProps<{
 
 .grid-item {
 	grid-column: span 3;
-	display: flex;
-	justify-content: space-between;
-	align-items: self-start;
-	gap: 1rem;
-	height: 100%;
-	padding: 0.75rem;
-	border: 1px solid darkslateblue;
-	border-radius: 0.9rem;
-	box-shadow: 2px 2px 5px blueviolet;
 }
 </style>

@@ -16,7 +16,7 @@ onMounted(async () => {
 	<div class="header-container">
 		<h2 class="main-label">Fruit explorer</h2>
 
-		<NuxtLink class="favorite-link" to="/favorite">Favorite</NuxtLink>
+		<NuxtLink class="link favorite" to="/favorite">Favorite</NuxtLink>
 
 	</div>
 
@@ -33,10 +33,6 @@ onMounted(async () => {
 	margin-bottom: 2rem;
 }
 
-.favorite-link {
-	grid-column: 12/13;
-	grid-row: 1/2;
-}
 
 .main-label {
 	grid-column: 1/5;
@@ -45,5 +41,19 @@ onMounted(async () => {
 	color: darkslateblue;
 }
 
+.link {
+	font-size: 1rem;
+	text-decoration: none;
+	color: blueviolet;
+	transition: color 0.3s ease-in-out 0s;
+	&.favorite {
+		grid-column: 12/13;
+		grid-row: 1/2;
+	}
+	&:hover {
+		color: darkviolet;
+		text-decoration: underline;
+	}
+}
 
 </style>

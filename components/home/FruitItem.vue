@@ -53,33 +53,55 @@ onMounted(() => {
 </script>
 
 <template>
-	<div >
-		<div class="fruit">
+	<div class="item-container">
+		<div class="item-content">
 			<h3>{{ props.fruit.name }}</h3>
-			<NuxtLink :to="`/group/${fruit.family}`">Family: {{ props.fruit.family }}</NuxtLink>
-			<p>Order: {{ props.fruit.order }}</p>
-			<p>Genus: {{ props.fruit.genus }}</p>
+			<NuxtLink class="link" :to="`/group/${fruit.family}`">Family: {{ props.fruit.family }}</NuxtLink>
 		</div>
 
-		<div class="fruit">
-			<h4>Nutrition:</h4>
-			<p> Calories: {{ props.fruit.nutritions?.calories }}</p>
-			<p> Fat: {{ props.fruit.nutritions?.fat }}</p>
-			<p> Sugar: {{ props.fruit.nutritions?.sugar }}</p>
-			<p> Carbohydrates: {{ props.fruit.nutritions?.carbohydrates }}</p>
-			<p> Protein: {{ props.fruit.nutritions?.protein }}</p>
+		<div class="item-content">
+
+			<div class="fruit">
+				<h4>Nutrition:</h4>
+				<p class="nutrition-item"> Calories: <span class="font-bold"> {{ props.fruit.nutritions?.calories }} </span> </p>
+				<p class="nutrition-item"> Fat: <span class="font-bold"> {{ props.fruit.nutritions?.fat }}</span>  </p>
+				<p class="nutrition-item"> Sugar: <span class="font-bold">{{ props.fruit.nutritions?.sugar }} </span>  </p>
+				<p class="nutrition-item">Carbohydrates: <span class="font-bold">{{ props.fruit.nutritions?.carbohydrates }}</span>  </p>
+				<p class="nutrition-item"> Protein: <span class="font-bold">{{ props.fruit.nutritions?.protein }}</span>  </p>
+			</div>
+
+			<div class="fruit">
+				<DeleteIcon class="action-icon" @click="handleDelete(props.fruit.id)" />
+				<FavoritesIcon class="action-icon fav" @click="handleFavorite(fruit)" :class="props.fruit.favorite ? 'active' : ''" />
+				<OpenIcon class="action-icon" />
+			</div>
 		</div>
 
-		<div class="fruit">
-			<DeleteIcon class="action-icon" @click="handleDelete(props.fruit.id)" />
-			<FavoritesIcon class="action-icon fav" @click="handleFavorite(fruit)" :class="props.fruit.favorite ? 'active' : ''" />
-			<OpenIcon class="action-icon" />
-		</div>
 	</div>
 </template>
 
 <style scoped>
+.nutrition-item {
+	margin-bottom: 0;
+}
+.font-bold {
+	font-weight: 600;
+}
+.item-container {
+	height: 100%;
+	padding: 0.75rem;
+	border: 1px solid darkslateblue;
+	border-radius: 0.9rem;
+	box-shadow: 2px 2px 5px blueviolet;
 
+}
+.item-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: self-end;
+	gap: 0.3rem;
+	margin-bottom: 1rem;
+}
 
 .action-icon {
 	padding: 0.3rem;
@@ -108,7 +130,10 @@ onMounted(() => {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: self-start;
-	gap: 0.5rem;
+	gap: 0.2rem;
+	& > h4 {
+		margin-bottom: 0.5rem;
+	}
 }
 
 

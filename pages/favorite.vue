@@ -10,7 +10,7 @@ const favList = computed(() => fruitsList.value?.filter(el => el.favorite));
 <template>
 	<div class="header-container">
 		<h2 class="main-label">Favorite fruits list</h2>
-		<NuxtLink class="favorite-link" to="/">Home</NuxtLink>
+		<NuxtLink class="link favorite" to="/">Home</NuxtLink>
 	</div>
 
 	<FruitsList :fruits-list="favList" />

@@ -11,6 +11,10 @@
 	box-sizing: border-box;
 }
 
+p {
+	margin: 0;
+}
+
 html, body {
 	font-size: 16px;
 }
