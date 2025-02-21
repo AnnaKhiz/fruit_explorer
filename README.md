@@ -4,20 +4,11 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
+Install dependencies with:
 
 # pnpm
 pnpm install
 
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
