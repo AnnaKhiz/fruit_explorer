@@ -1,4 +1,4 @@
-import type { Fruits } from "~/types/Fruit";
+import type { Fruits } from "~/types/Fruits";
 
 export const useFruitsStore = defineStore('fruitsStore', () => {
 	const fruitsList = ref<Fruits[] | null>(null);
@@ -6,7 +6,6 @@ export const useFruitsStore = defineStore('fruitsStore', () => {
 	async function getFruitsData() {
 		try {
 			const result = await $fetch<Fruits[]>('https://www.fruityvice.com/api/fruit/all');
-
 			fruitsList.value = result.map((el: Fruits) => ({...el, favorite: false}) as Fruits);
 		} catch (error) {
 			console.log('Error in fetching fruits list', error)
@@ -28,18 +27,28 @@ export const useFruitsStore = defineStore('fruitsStore', () => {
 		return fruitsList.value?.splice(index, 1);
 	}
 
-
 	function toggleFavoriteState(id: number) {
 		const index = fruitsList.value?.findIndex(el => el.id === id) as number;
-		console.log('index', index)
 		if (index === -1) return;
 
 		if (fruitsList.value) {
 			fruitsList.value[index].favorite = !fruitsList.value[index].favorite;
 		}
-
 	}
 
+	function updateFruitsList(value: Fruits) {
+		const index = fruitsList.value?.findIndex(el => el.id === value.id) as number;
+		if (index === -1) return;
 
-	return { fruitsList, getFruitsData, removeFruitItem, toggleFavoriteState }
+		if (fruitsList.value) {
+			fruitsList.value[index] = value;
+		}
+	}
+
+	return {
+		fruitsList,
+		getFruitsData,
+		removeFruitItem,
+		toggleFavoriteState
+	}
 })

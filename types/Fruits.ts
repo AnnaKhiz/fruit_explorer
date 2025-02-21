@@ -1,10 +1,4 @@
-type Nutritions = {
-	calories: number;
-	fat: number;
-	sugar: number;
-	carbohydrates: number;
-	protein: number;
-}
+import type { Nutritions } from "~/types/Nutritions";
 
 export type Fruits = {
 	name: string;

@@ -1,5 +1,5 @@
 <template>
-	<div class="container" >
+	<div class="container">
 		<NuxtPage />
 	</div>
 </template>
@@ -28,7 +28,5 @@ html, body {
 		"main main main main main main main main main main main main";
 	padding: 1.5rem 1.8rem;
 }
-
 </style>
-<script setup lang="ts">
-</script>
+

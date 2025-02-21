@@ -14,7 +14,8 @@ onMounted(async () => {
 <template>
 	<div class="header-container">
 		<h2 class="main-label">Group - {{ familyName }}</h2>
-		<NuxtLink class="favorite-link" to="/">Home</NuxtLink>
+		<NuxtLink class="link favorite" to="/favorite">Favorite</NuxtLink>
+		<NuxtLink class="link home" to="/">Home</NuxtLink>
 	</div>
 
 	<FruitsList :fruits-list="familyList" />
